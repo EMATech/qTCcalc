@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file>gplv3.png</file>
+    <file>ematech.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,108 @@
+qTCcalc - A QT4 Simple Time Code Calculator
+
+2008/12/13 - Spécifications préliminaires
+
+Author : Raphaël Doursenaud <rdoursenaud@free.fr>
+
+    Copyright 2008 Raphaël Doursenaud
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+PRESENTATION
+    The purpose of this program is to provide a simple tool for Time
+Codes manipulations.
+    The Time Code (sometimes also refered as "Timecode") is a sequence of numeric codes generated at regular intervals by a timing system. Time codes are used extensively for synchronization, and for logging material in recorded media. SOM is also a related term (in the broadcast industry) and stands for 'Start of Message' or 'Start of Media' also known as Time Code (TC) in. Similarly EOM stands for 'End of Message' or 'End of Media' also known as Time Code (TC) out. - Source: http://en.wikipedia.org
+    We will first concentrate on the SMPTE Time Code variant but might implement algorithms for manipulation of other Time Codes.
+
+CONVENTION
+   From there on we will refer to Time Code as TC.
+
+SCOPE
+    qtcalc is intented to be used by professionnal sound and video editors to manipulate TC.
+    It should allow easy input of both operators and operands and provide a very readable output. The ardour (http://www.ardour.org) TC display is a good example of a readable display.
+		The first operations supported will be addition and substraction as they are the most useful.
+		The input format will be standard SMPTE TC (HH:MM:SS.FF). We will implement days and subframes later.
+    4 modes will be available :
+        24 frames/s
+        25 frames/s
+        29.97 frames/s (can be written 30x1000/1001) DF separator ';'
+				30 frames/s ND
+    Next versions should allow calculation of other time based codes HH:MM:SS,ss , BBT ...
+
+TECHNOLOGY
+    At that time, 3 free libraries are available to manipulate TC:
+        etmc from the Epeios project by Claude Simon (http://zeusw.org/epeios) that might disapear in favor of emth. GPL v2.
+        emth is more general library also from Claude Simon's Epeios project that features TC manipulation. GPL v2.
+        mffm-timecode from Matt Flax. LGPL v2.1 or later.
+    Another alternative would be to recode the algorithms but everyone knows that my coding skills are low and my coding style is pretty uggly...
+    The solution will be decided after evaluation.
+    The GUI part will use Trolltech's QT4 toolkit because it is well integrated, well documented and I have some experience.
+
+EVALUATION
+    mffm-timecode seems not to fit as it is for media TC manipulation.
+    Both etmc and emth are too complex for me and far beyond my actual knowledge.
+    So ... I'll try to code something that works for me.
+
+ALGORITHMS
+    I can think of two approaches :
+        The obvious one is using lowest common denominator, convert all input to that and do normal calculations on it then convert back to the formated layout for display.
+        The second one is keeping the format and split it in a table and do special calculations on it.
+    I'll make the first shot using the first approach.
+    The first version will also allow only one operation by input. That means: 'data1' 'operator (+ or -)' 'data2'.
+    One cool future feature will be using any amount of data as 'data1' and apply an offset (+ or -) to display the results. Input could be manual, from a text file or an xml.
+    Memories will be part of a next version.
+    Conversions between formats will be evaluated while developping but might be part of a next version.
+
+GUI
+    The first GUI should be very similar to any simple calculator outthere.
+
+WINDOWS
+    One single plus an about dialog.
+
+MENU
+    None.
+
+TOOLBAR
+    Quit/About 
+    Help/Undo/Redo/Memories/Modes/Copy/Cut/Paste may be part of a next version.
+
+INPUT/OUTPUT
+   Input from buttons.
+   Direct input in a next version.
+   Maybe a subdisplay for different format.
+
+OPTIONS
+    SMPTE TC modes (one of 24/25/29.97/30NDF/30DF) (23,976/24.976/29.97DF/59.94/60 will be in a next version)
+    Mode selection between SMPTE/Time/BBT/samples will be in a next version.
+
+INPUT BUTTONS
+    Available as buttons and keyboard shortcuts :
+    0 1 2 3 4 5 6 7 8 9 + - : BSP CE CLR =
+    +- . , ; in next version.
+
+ERRORS AND WARNINGS
+    These will be displayed in the status bar. This includes formatting and computational messages.
+
+DEBUGGING
+    Debugging messages should be issued on the standard output.
+
+ABOUT DIALOG
+    Should state :
+Logo icon
+qTCcalc 'version'
+A QT4 Simple Time Code Calculator
+Author: Raphaël Doursenaud <rdoursenaud@free.fr>
+Branding and support: EMA Tech. logo (http://ematech.fr)
+Copyright: Copyright 2008 Raphaël Doursenaud
+Licencing: GPL v3 or more, logo and FSF website link.
+
+TRANSLATIONS
+    The first version will be translated in French and ready for other languages.
+
+PROCESS
+    I'll start by designing the GUI then connecting it to underlying computation.
