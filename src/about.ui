@@ -20,6 +20,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="qtccalc.qrc">
+    <normaloff>:/icons/tccalc.png</normaloff>:/icons/tccalc.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
