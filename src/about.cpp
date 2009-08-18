@@ -23,8 +23,6 @@ About::About( QWidget *parent )
  : QDialog( parent )
 {
 	ui.setupUi( this );
-
-	connect( ui.closeButton, SIGNAL( pressed() ), this, SLOT( close() ) );
 }
 
 About::~About()
