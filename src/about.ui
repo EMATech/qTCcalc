@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>471</width>
-    <height>524</height>
+    <width>306</width>
+    <height>533</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,7 +18,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>About</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qtccalc.qrc">
@@ -296,13 +296,13 @@ p, li { white-space: pre-wrap; }
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>75</height>
+         <height>110</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>75</height>
+         <height>110</height>
         </size>
        </property>
        <property name="horizontalScrollBarPolicy">
@@ -364,8 +364,17 @@ p, li { white-space: pre-wrap; }
          <height>25</height>
         </size>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
        <property name="text">
         <string>Close</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
        </property>
        <property name="popupMode">
         <enum>QToolButton::DelayedPopup</enum>
